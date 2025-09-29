@@ -111,6 +111,16 @@ jobs:
 
           echo "Clone kernel source => ($KERNELREPO)"
 
+      - name: "Clone audio-legacy source => (${{ env.KERNELREPO }})"
+        run: |
+          git clone --recursive --depth=1 -j $(nproc) --branch audio-4.9 https://github.com/needAlt/kernel_techpack_audio-legacy $KERNELNAME/techpack/audio-legacy
+
+          echo "Clone kernel source => ($KERNELREPO)"
+
+      - name: "Clone tinanium-module source => (${{ env.KERNELREPO }})"
+        run: |
+          git clone --recursive --depth=1 -j $(nproc) --branch k4.9 https://github.com/needAlt/techpack_xiaomi-titanium $KERNELNAME/techpack/xiaomi-titanium
+
       - name: "Clone prima source => (${{ env.KERNELREPO }})"
         run: |
           git clone --recursive --depth=1 -j $(nproc) --branch wlan/LA.UM.9.6.4/mithorium/master https://github.com/Mi-Thorium/vendor_qcom_opensource_wlan_prima $KERNELNAME/drivers/staging/prima

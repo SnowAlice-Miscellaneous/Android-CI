@@ -1,0 +1,14 @@
+name: "sshx-terminal-web"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: setup 
+        run: |
+          export TERM=xterm
+          
+          curl -sSf https://sshx.io/get | sh -s run

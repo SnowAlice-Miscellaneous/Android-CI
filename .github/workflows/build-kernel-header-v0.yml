@@ -111,6 +111,11 @@ jobs:
 
           echo "Clone kernel source => ($KERNELREPO)"
 
+      - name: "Update sukisu"
+        run: |
+          cd $KERNELNAME
+          curl -LSs "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/main/kernel/setup.sh" | bash -s nongki
+      
       - name: "Clone prima source => (${{ env.KERNELREPO }})"
         run: |
           git clone --recursive --depth=1 -j $(nproc) --branch wlan/LA.UM.9.6.4/mithorium/master https://github.com/Mi-Thorium/vendor_qcom_opensource_wlan_prima $KERNELNAME/drivers/staging/prima

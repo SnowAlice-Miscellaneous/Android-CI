@@ -111,9 +111,15 @@ jobs:
 
           echo "Clone kernel source => ($KERNELREPO)"
 
+      - name: "Clone audio-legacy source => (${{ env.KERNELREPO }})"
+        run: |
+          git clone --recursive --depth=1 -j $(nproc) --branch audio-4.9 https://github.com/SnowAlice-Miscellaneous/kernel_techpack_audio-legacy $KERNELNAME/techpack/audio-legacy
+
+          echo "Clone kernel source => ($KERNELREPO)"
+
       - name: "Clone tinanium-module source => (${{ env.KERNELREPO }})"
         run: |
-          git clone --recursive --depth=1 -j $(nproc) --branch k4.9 https://github.com/NeedAlt-Room/kernel_techpack_xiaomi-titanium $KERNELNAME/techpack/xiaomi-titanium
+          git clone --recursive --depth=1 -j $(nproc) --branch wip https://github.com/SnowAlice-Miscellaneous/techpack_xiaomi-titanium $KERNELNAME/techpack/xiaomi-titanium
       - name: "Clone Clang"
         env:
           toolchains: "${{ toJSON(matrix.repos.toolchains) }}"

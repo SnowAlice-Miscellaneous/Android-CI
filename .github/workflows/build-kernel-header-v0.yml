@@ -110,6 +110,12 @@ jobs:
           git clone --recursive --depth=1 -j $(nproc) --branch $KERNELBRANCH $KERNELREPO $KERNELNAME
 
           echo "Clone kernel source => ($KERNELREPO)"
+
+      - name: "Clone dts => (${{ env.KERNELREPO }})"
+        run: |
+          git clone --recursive --depth=1 -j $(nproc) -b main https://github.com/SnowAlice-Miscellaneous/kernel_devicetree_xiaomi-titanium $KERNELNAME/arch/arm64/boot/dts/xiaomi-msm8953
+
+          echo "Clone kernel source => ($KERNELREPO)"
       
       - name: "Clone prima source => (${{ env.KERNELREPO }})"
         run: |

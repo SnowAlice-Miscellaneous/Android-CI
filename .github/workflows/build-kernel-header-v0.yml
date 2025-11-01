@@ -110,11 +110,6 @@ jobs:
           git clone --recursive --depth=1 -j $(nproc) --branch $KERNELBRANCH $KERNELREPO $KERNELNAME
 
           echo "Clone kernel source => ($KERNELREPO)"
-
-      - name: "Update sukisu"
-        run: |
-          cd $KERNELNAME
-          curl -LSs "https://raw.githubusercontent.com/SukiSU-Ultra/SukiSU-Ultra/main/kernel/setup.sh" | bash -s nongki
       
       - name: "Clone prima source => (${{ env.KERNELREPO }})"
         run: |
@@ -124,13 +119,19 @@ jobs:
 
       - name: "Clone audio-legacy source => (${{ env.KERNELREPO }})"
         run: |
-          git clone --recursive --depth=1 -j $(nproc) -b audio-4.9 https://github.com/SnowAlice-Miscellaneous/kernel_techpack_audio-legacy $KERNELNAME/techpack/audio-legacy
+          git clone --recursive --depth=1 -j $(nproc) -b audio/4.19/master/ https://github.com/SnowAlice-Miscellaneous/kernel_techpack_audio-legacy $KERNELNAME/arch/arm64/boot/dts/vendor-legacy
+
+          echo "Clone kernel source => ($KERNELREPO)"
+
+      - name: "Clone dts-legacy source => (${{ env.KERNELREPO }})"
+        run: |
+          git clone --recursive --depth=1 -j $(nproc) -b main https://github.com/SnowAlice-Miscellaneous/kernel_devicetree_msm-4.19 $KERNELNAME/techpack/audio-legacy
 
           echo "Clone kernel source => ($KERNELREPO)"
 
       - name: "Clone tinanium-module source => (${{ env.KERNELREPO }})"
         run: |
-          git clone --recursive --depth=1 -j $(nproc) -b vince/ts/rework https://github.com/SnowAlice-Miscellaneous/techpack_xiaomi-titanium $KERNELNAME/techpack/xiaomi-titanium
+          git clone --recursive --depth=1 -j $(nproc) -b k4.19 https://github.com/SnowAlice-Miscellaneous/techpack_xiaomi-titanium $KERNELNAME/techpack/xiaomi-titanium
           
       - name: "Clone Clang"
         env:

@@ -125,13 +125,13 @@ jobs:
 
       - name: "Clone audio-legacy source => (${{ env.KERNELREPO }})"
         run: |
-          git clone --recursive --depth=1 -j $(nproc) -b audio/4.19/master/ https://github.com/SnowAlice-Miscellaneous/kernel_techpack_audio-legacy $KERNELNAME/arch/arm64/boot/dts/vendor-legacy
+          git clone --recursive --depth=1 -j $(nproc) -b audio/4.19/master https://github.com/SnowAlice-Miscellaneous/kernel_techpack_audio-legacy $KERNELNAME/techpack/audio-legacy
 
           echo "Clone kernel source => ($KERNELREPO)"
 
       - name: "Clone dts-legacy source => (${{ env.KERNELREPO }})"
         run: |
-          git clone --recursive --depth=1 -j $(nproc) -b main https://github.com/SnowAlice-Miscellaneous/kernel_devicetree_msm-4.19 $KERNELNAME/techpack/audio-legacy
+          git clone --recursive --depth=1 -j $(nproc) -b main https://github.com/SnowAlice-Miscellaneous/kernel_devicetree_msm-4.19 $KERNELNAME/arch/arm64/boot/dts/vendor-legacy
 
           echo "Clone kernel source => ($KERNELREPO)"
 
